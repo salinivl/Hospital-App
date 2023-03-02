@@ -2,18 +2,18 @@ const express = require('express')
 const app = express()
 const path= require('path')
 const fs=require('fs')
-const dataorg = require('./data/data.json')
+
 const { clear } = require('console')
 app.use(express.json());
 
 //GET Method
 app.get('/',(req,res)=>{
-    fs.readFile('hospital-app/data/data.json','utf-8', (err,result)=>{
+    fs.readFile(path.join(__dirname,'/data/data.json'),'utf-8', (err,result)=>{
         if (err){
             console.log(err);
             return
         }
-        console.log(result);
+        console.log(result);       
         res.send(result)
     })
     
@@ -22,7 +22,7 @@ app.get('/',(req,res)=>{
 
 //POST Method
 app.post('/',(req,res)=>{ 
-fs.readFile('hospital-app/data/data.json', 'utf8', (err, data) => {
+fs.readFile(path.join(__dirname,'/data/data.json'), 'utf8', (err, data) => {
   if (err) {
     console.error(err);
   } else {
@@ -33,7 +33,7 @@ fs.readFile('hospital-app/data/data.json', 'utf8', (err, data) => {
   
     const newData1 = JSON.stringify(dataArray);
     
-    fs.writeFile('hospital-app/data/data.json', newData1, 'utf8', (err) => {
+    fs.writeFile(path.join(__dirname,'/data/data.json'), newData1, 'utf8', (err) => {
       if (err) {
         console.error(err);
       } else {
@@ -51,7 +51,7 @@ fs.readFile('hospital-app/data/data.json', 'utf8', (err, data) => {
 app.put('/',(req,res)=>{   
    
 
-fs.readFile('hospital-app/data/data.json', 'utf8', (err, data) => {
+fs.readFile(path.join(__dirname,'/data/data.json'), 'utf8', (err, data) => {
   if (err) {
     console.error(err);
   } else {
@@ -66,7 +66,7 @@ fs.readFile('hospital-app/data/data.json', 'utf8', (err, data) => {
     
     const newData = JSON.stringify(dataArray);
     
-    fs.writeFile('hospital-app/data/data.json', newData, 'utf8', (err) => {
+    fs.writeFile(path.join(__dirname,'/data/data.json'), newData, 'utf8', (err) => {
       if (err) {
         console.error(err);
       } else {
@@ -81,7 +81,7 @@ fs.readFile('hospital-app/data/data.json', 'utf8', (err, data) => {
 //DELETE Method
 app.delete('/',(req,res)=>{  
 
-fs.readFile('hospital-app/data/data.json', 'utf8', (err, data) => {
+fs.readFile(path.join(__dirname,'/data/data.json'), 'utf8', (err, data) => {
   if (err) {
     console.error(err);
   } else {
@@ -93,7 +93,7 @@ fs.readFile('hospital-app/data/data.json', 'utf8', (err, data) => {
     
     const newData = JSON.stringify(dataArray);
    
-    fs.writeFile('hospital-app/data/data.json', newData, 'utf8', (err) => {
+    fs.writeFile(path.join(__dirname,'/data/data.json'), newData, 'utf8', (err) => {
       if (err) {
         console.error(err);
       } else {
